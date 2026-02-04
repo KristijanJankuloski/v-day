@@ -15,13 +15,20 @@ import { DarkButtonComponent } from '../../shared/components/dark-button/dark-bu
 export class HomeComponent implements OnInit {
   private readonly spinnerService = inject(SpinnerService);
 
+  public valentinesDay: Date;
   public formControl = new FormControl('');
   public saidYes = false;
   public multiplier = 1;
   public showNo = true;
   public noText = "No";
+  public days = 0;
+  public hours = 0;
+  public minutes = 0;
+  public seconds = 0;
 
   public ngOnInit(): void {
+    const today = new Date();
+    this.valentinesDay = new Date(today.getFullYear(), 1, 14, 18, 0, 0, 0);
   }
 
   public submitClick(): void {
@@ -41,6 +48,16 @@ export class HomeComponent implements OnInit {
     timer(5000).subscribe(() => {
       this.saidYes = true;
       this.spinnerService.hideSpinner();
+
+      setInterval(() => {
+        const now = new Date();
+        const timeUntilVdayMs = this.valentinesDay.getTime() - now.getTime();
+        const totalSeconds = Math.floor(timeUntilVdayMs / 1000);
+        this.days = Math.floor(totalSeconds / 86400);
+        this.hours = Math.floor((totalSeconds % 86400) / 3600);
+        this.minutes = Math.floor((totalSeconds % 3600) / 60);
+        this.seconds = totalSeconds % 60;
+      }, 1000);
     });
   }
 

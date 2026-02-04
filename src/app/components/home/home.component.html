@@ -23,6 +23,9 @@
         <div class="finished-container">
             <h1 class="header">Yay!!!</h1>
             <img src="https://media1.tenor.com/m/G9owpGP34PIAAAAd/jumping-for-joy-jumping.gif" alt="gif">
+            @if (days || hours || minutes || seconds) {
+                <h3 class="header">{{ days }} days {{ hours }} hours {{ minutes }} minutes {{ seconds }} seconds untill date!</h3>
+            }
         </div>
     }
 </div>
