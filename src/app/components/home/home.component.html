@@ -1,3 +1,28 @@
-<p>home works!</p>
-<app-heart-button text="Submit" (click)="submitClick()">
-</app-heart-button>
+<div class="wrapper">
+    @if (!saidYes) {
+        <div class="container">
+            <h1 class="header">Will you be my valentine?</h1>
+            <div class="buttons-container">
+                @if (showNo) {
+                    <app-dark-button
+                        (click)="noClicked()"
+                        [text]="noText"
+                    ></app-dark-button>
+                }
+                <app-heart-button
+                    [ngStyle]="{
+                        transform: 'scale(' + multiplier + ')'
+                    }"
+                    text="Yes!"
+                    (click)="submitClick()"
+                >
+                </app-heart-button>
+            </div>
+        </div>
+    } @else {
+        <div class="finished-container">
+            <h1 class="header">Yay!!!</h1>
+            <img src="https://media1.tenor.com/m/G9owpGP34PIAAAAd/jumping-for-joy-jumping.gif" alt="gif">
+        </div>
+    }
+</div>
