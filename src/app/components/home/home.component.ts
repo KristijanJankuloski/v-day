@@ -34,17 +34,6 @@ export class HomeComponent implements OnInit {
   public submitClick(): void {
     this.showNo = false;
     this.spinnerService.showSpinner();
-    const request = {
-      message: `She said yes: ${(new Date()).toISOString()}`
-    }
-    fetch('https://script.google.com/macros/s/_key_/exec', {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(request)
-    });
     timer(5000).subscribe(() => {
       this.saidYes = true;
       this.spinnerService.hideSpinner();
